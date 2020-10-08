@@ -5,7 +5,7 @@ import moment from 'moment';
 export default async (req, res) => {
 	try {
 		const { baseURL } = req.query;
-		const tunnel_path = `${baseURL}:4005/home/pi/pikrellcam/media/videos;`
+		const tunnel_path = `${baseURL}:4005/home/pi/pikrellcam/media/videos`;
 		const response = await axios.get(tunnel_path);
 		const videos = response.data.files.map(video => {
 			const info = video.title.split('_');
