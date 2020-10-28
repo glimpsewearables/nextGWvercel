@@ -1,25 +1,20 @@
-async function isLocal (ip) {
-    ip = ip
-    url = `http://${ip}:4005/home/pi/glimpse-cam/`;
-    
-    const alive = await fetch(url, {
-      method: 'GET',
-      mode: 'no-cors',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-    });
-  
+import * as iwconfig from 'wireless-tools/iwconfig';
 
-    const response = await alive.status;
-    if (response == 0){
-      
-      console.log("on same network")
-      return true;
+export default async (req, res) => {
+	iwconfig.status('wlan0' ,function (error, status) {
+		if (error) {
+			console.log(error);
+			res.status(500).json({ error: 'Internal Server Error' });
+		}
 
-    }
-    else{
-      errorElement.innerText = "not on same network";
-      console.log("not on same network")
-      return false;
-    }
+		else {
+			console.log(status);
+
+			const ssid_list = status.map(({ ssid }) => { return { name: ssid } });
+			res.status(200).json({ ssid_list });
+		}
+	})
+}
+
+ 
+
