@@ -7,7 +7,7 @@ export default async (req, res) => {
 			res.status(500).json({ error: 'Internal Server Error' });
 		}
 
-		else {
+		else {	
 			console.log(networks);
 
 			const ssid_list = networks.map(({ ssid }) => { return { name: ssid } });

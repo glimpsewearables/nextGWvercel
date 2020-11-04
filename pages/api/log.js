@@ -4,7 +4,14 @@ import { filter } from 'underscore';
 export default async (req, res) => {
 	try {
 		const { baseURL } = req.query;
-		const tunnel_path = `${baseURL}:4005/home/pi/glimpse-cam/glimpseLog.log`;
+		var url = baseURL;
+		if (url == 'http://my.glimpse.cam'){
+		  url = 'http://10.42.0.1';
+		}
+		else{
+		  url = baseURL;
+		}
+		const tunnel_path = `${url}:4005/home/pi/glimpse-cam/glimpseLog.log`;
 		const response = await axios.get(tunnel_path);
 		const log = response.data.split('\n').reverse();
 		const log_v1 = log.map(string => {

@@ -1,0 +1,9 @@
+[Unit]
+Description=nextGW
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/bash /usr/src/app/start.sh
+
+[Install]
+WantedBy=multi-user.target

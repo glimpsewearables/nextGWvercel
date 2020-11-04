@@ -120,6 +120,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Livestream({ baseURL }) {
+  var url = baseURL;
+  if (url == 'http://my.glimpse.cam'){
+    url = 'http://10.42.0.1';
+  }
+  else{
+    url = baseURL;
+  }
   const classes = useStyles();
   const [time, setTime] = React.useState(Date.now());
   const [loading, setLoading] = React.useState(true);
