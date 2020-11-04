@@ -38,7 +38,7 @@ def online():
 def bootUp():
 	online()
 	dnsmasq = sub.check_call(['bash', './dnsmasq.sh'], shell=True)
-	console.log(dnsmasq)
+	print dnsmasq
 	
 def main():
 	bootUp()

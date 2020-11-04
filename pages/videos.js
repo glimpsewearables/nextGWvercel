@@ -248,6 +248,8 @@ const Videos = ({ baseURL }) => {
     return `${month} ${date}${nth(date)}, ${split_date[0]}`;
   }
 
+  const url
+
   React.useEffect(() => {
     async function getVideos() {
       try {
@@ -279,7 +281,12 @@ const Videos = ({ baseURL }) => {
             </Grid>
             <Grid className={classes.main} item xs={12} sm={3} md={2}>
               <h1 style={{ color: '#7e7e7e', fontWeight: 'bold', fontFamily: 'Segoe UI', marginBottom: "0px" }}>Videos</h1>
-              <div className={classes.row}><a href = "www.google.com">heyhey!</a></div>
+              <div className={classes.row}>
+                currDate ?
+                <Button className={classes.dateButton} onClick= "window.location.href=https://www.google.com">
+                              Download
+                            </Button>
+                </div>
               <div className={classes.column}>
                 <Paper className={classes.paper}>
                   <List component="nav" className={classes.root}>
@@ -395,6 +402,7 @@ const Videos = ({ baseURL }) => {
             <img src="/back.png" style={{ width: "30px", height: "30px", marginRight: "20px", cursor: "pointer" }} onClick={() => Router.push('/')} />
             <h1 style={{ color: '#7e7e7e', fontFamily: 'Segoe UI', marginTop: "20px", marginBottom: '20px' }}>Videos</h1>
           </div>
+          <div className={classes.row}><a href = "www.google.com">heyhey!</a></div>
           <div className={classes.column}>
             <Paper className={classes.paper}>
               <List component="nav" className={classes.root}>
