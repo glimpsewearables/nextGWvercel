@@ -36,9 +36,8 @@ def online():
 		return False
 
 def bootUp():
-	if online() == False:
-		os.chdir(WORKING_DIR)
-		sub.call(['bash', './dnsmasq.sh'], shell=True)
+	online()
+	sub.call(['bash', './dnsmasq.sh'], shell=True)
 
 def main():
 	bootUp()

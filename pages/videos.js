@@ -337,7 +337,22 @@ const Videos = ({ baseURL }) => {
                             <div className={classes.greyBar}><PulseBar /></div>
                           </ListItem>
                         </>
-                    }
+                      }
+                        <ListItem divider className={classes.listItem}>
+                      {
+                        currDate ?
+                          <>
+                            <Button className={classes.dateButton}>
+                             Donwload videos from {currDate}
+                            </Button>
+                           
+                          </>
+                          : <ListItem className={classes.listItem}>
+                            <div className={classes.greyBar}><PulseBar /></div>
+                          </ListItem>
+                      }
+
+                    </ListItem>
                   </List>
                 </Paper>
               </div>
