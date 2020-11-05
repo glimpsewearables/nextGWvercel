@@ -44,10 +44,13 @@ def main():
 	i = 0
 	while i == 0:
 		CURRENT_IP_ADRESS = getIp()
-		if changed(CURRENT_IP_ADRESS) and (online() == False) and CURRENT_IP_ADRESS = '10.42.0.1':
+		if changed(CURRENT_IP_ADRESS) and (online() == False) and CURRENT_IP_ADRESS == '1000.42.0.1':
 			dnsMasq()
 			time.sleep(15)
-			print ("activate DNS")
+			f = open("demofile2.txt", "a")
+			f.write("Now the file has more content!")
+			f.close()
+
 		time.sleep(1)
 			
 main()

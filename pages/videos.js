@@ -250,7 +250,7 @@ const Videos = ({ baseURL }) => {
   
   //link passes baseURL in and 
   // THIS IS A FUNCTION, you won't be able to consume it like `link`
-  const link = () => `http://${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}.zip`
+  const link = () => `${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}.zip`
   
   React.useEffect(() => {
     async function getVideos() {
@@ -284,7 +284,7 @@ const Videos = ({ baseURL }) => {
             <Grid className={classes.main} item xs={12} sm={3} md={2}>
               <h1 style={{ color: '#7e7e7e', fontWeight: 'bold', fontFamily: 'Segoe UI', marginBottom: "0px" }}>Videos</h1>
               <div className={classes.row}>
-                //a href takes in link 
+              
               <a href={link()} onClick={handleClick} >
       Download Today
     </a>
@@ -404,7 +404,12 @@ const Videos = ({ baseURL }) => {
             <img src="/back.png" style={{ width: "30px", height: "30px", marginRight: "20px", cursor: "pointer" }} onClick={() => Router.push('/')} />
             <h1 style={{ color: '#7e7e7e', fontFamily: 'Segoe UI', marginTop: "20px", marginBottom: '20px' }}>Videos</h1>
           </div>
-          <div className={classes.row}><a href = "www.google.com">heyhey!</a></div>
+          <div className={classes.row}>
+              
+              <a href={link()} onClick={handleClick} >
+              Download Today
+              </a>
+                </div>
           <div className={classes.column}>
             <Paper className={classes.paper}>
               <List component="nav" className={classes.root}>
