@@ -247,7 +247,10 @@ const Videos = ({ baseURL }) => {
     const month = months[number_month];
     return `${month} ${date}${nth(date)}, ${split_date[0]}`;
   }
-const link = ({ baseURL }) => `http://${baseURL}:4005/home/pi/pikrellcam/media/videos/`
+  
+  //link passes baseURL in and 
+  // THIS IS A FUNCTION, you won't be able to consume it like `link`
+  const link = () => `http://${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}`
   
   React.useEffect(() => {
     async function getVideos() {
@@ -281,8 +284,8 @@ const link = ({ baseURL }) => `http://${baseURL}:4005/home/pi/pikrellcam/media/v
             <Grid className={classes.main} item xs={12} sm={3} md={2}>
               <h1 style={{ color: '#7e7e7e', fontWeight: 'bold', fontFamily: 'Segoe UI', marginBottom: "0px" }}>Videos</h1>
               <div className={classes.row}>
-                
-              <a href={link} onClick={handleClick} >
+                //a href takes in link 
+              <a href={link()} onClick={handleClick} >
       Download Today
     </a>
                 </div>
