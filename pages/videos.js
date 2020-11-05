@@ -286,7 +286,7 @@ const Videos = ({ baseURL }) => {
               <div className={classes.row}>
               
               <a href={link()} onClick={handleClick} >
-              <img src="/download.png" width="100" height="132">
+              <img src="/download.png" width="40" height="40">
               </img>
               </a>
                 </div>
@@ -408,7 +408,7 @@ const Videos = ({ baseURL }) => {
           <div className={classes.row}>
               
               <a href={link()} onClick={handleClick} >
-              Download Today
+              <img src="/download.png" width="40" height="40"></img>
               </a>
                 </div>
           <div className={classes.column}>
