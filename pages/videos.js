@@ -248,8 +248,7 @@ const Videos = ({ baseURL }) => {
     return `${month} ${date}${nth(date)}, ${split_date[0]}`;
   }
 
-  const url
-
+  
   React.useEffect(() => {
     async function getVideos() {
       try {
