@@ -44,7 +44,7 @@ def main():
 	i = 0
 	while i == 0:
 		CURRENT_IP_ADRESS = getIp()
-		if changed(CURRENT_IP_ADRESS) and online() == False():
+		if changed(CURRENT_IP_ADRESS) and (online() == False):
 			dnsMasq()
 			print ("activate DNS")
 		

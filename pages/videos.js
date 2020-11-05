@@ -247,7 +247,7 @@ const Videos = ({ baseURL }) => {
     const month = months[number_month];
     return `${month} ${date}${nth(date)}, ${split_date[0]}`;
   }
-const link = "http://192.168.0.137:4005/home/pi/pikrellcam/media/videos/2020-11-03.zip"
+const link = ({ baseURL }) => `http://${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}.zip`
   
   React.useEffect(() => {
     async function getVideos() {
