@@ -250,7 +250,7 @@ const Videos = ({ baseURL }) => {
   
   //link passes baseURL in and 
   // THIS IS A FUNCTION, you won't be able to consume it like `link`
-  const link = () => `http://${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}`
+  const link = () => `http://${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}.zip`
   
   React.useEffect(() => {
     async function getVideos() {
