@@ -286,8 +286,9 @@ const Videos = ({ baseURL }) => {
               <div className={classes.row}>
               
               <a href={link()} onClick={handleClick} >
-      Download Today
-    </a>
+              <img src="/download.png" width="100" height="132">
+              </img>
+              </a>
                 </div>
               <div className={classes.column}>
                 <Paper className={classes.paper}>
