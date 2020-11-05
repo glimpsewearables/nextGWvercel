@@ -19,8 +19,8 @@ def changed(CURRENT_IP_ADRESS):
 def dnsMasq():
 	time.sleep(2)
 	os.chdir(WORKING_DIR)
-	sub.call(['bash', 'dnsmasq.sh'], shell=True)
-	
+	dnsmasq = sub.call(['bash', 'dnsmasq.sh'])
+	print dnsmasq
 
 def online():
 	os.chdir(WORKING_DIR)
@@ -36,7 +36,7 @@ def online():
 
 def bootUp():
 	online()
-	dnsmasq = sub.check_call(['bash', 'dnsmasq.sh'], shell=True)
+	dnsmasq = sub.check_call(['bash', 'dnsmasq.sh'])
 	print dnsmasq
 	
 def main():

@@ -247,7 +247,7 @@ const Videos = ({ baseURL }) => {
     const month = months[number_month];
     return `${month} ${date}${nth(date)}, ${split_date[0]}`;
   }
-
+const link = "https://www.google.com"
   
   React.useEffect(() => {
     async function getVideos() {
@@ -282,9 +282,9 @@ const Videos = ({ baseURL }) => {
               <h1 style={{ color: '#7e7e7e', fontWeight: 'bold', fontFamily: 'Segoe UI', marginBottom: "0px" }}>Videos</h1>
               <div className={classes.row}>
                 
-                <Button className={classes.dateButton} onClick= "window.open('https://www.google.com')">
-                              Download Today
-                            </Button>
+              <a href={link} onClick={handleClick} >
+      Download Today
+    </a>
                 </div>
               <div className={classes.column}>
                 <Paper className={classes.paper}>
