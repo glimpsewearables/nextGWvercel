@@ -281,9 +281,9 @@ const Videos = ({ baseURL }) => {
             <Grid className={classes.main} item xs={12} sm={3} md={2}>
               <h1 style={{ color: '#7e7e7e', fontWeight: 'bold', fontFamily: 'Segoe UI', marginBottom: "0px" }}>Videos</h1>
               <div className={classes.row}>
-                currDate ?
-                <Button className={classes.dateButton} onClick= "window.location.href=https://www.google.com">
-                              Download
+                
+                <Button className={classes.dateButton} onClick= "window.open('https://www.google.com')">
+                              Download Today
                             </Button>
                 </div>
               <div className={classes.column}>
