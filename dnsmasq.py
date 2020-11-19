@@ -1,55 +1,70 @@
 import sys, time, os
 import subprocess as sub
+import logging
+
+
+logging.basicConfig(filename='dnsmasq.log', level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger()
+logger.info("logger setup")
 
 WORKING_DIR = "/usr/src/app"
 
-def getIp():
-	IP_ADRESS = sub.check_output(['hostname','-I'], shell=True).decode(sys.stdout.encoding)
-	IP_ADRESS = IP_ADRESS.split(" ", 1)
-	return IP_ADRESS[0]
+def getSsid():
+	SSID = sub.check_output(['./nmcli'], shell=True)
+	return SSID[20:34]
 
-def changed(CURRENT_IP_ADRESS):
-	time.sleep(5)
-	NEW_IP_ADRESS = getIp()
-	if NEW_IP_ADRESS != CURRENT_IP_ADRESS:
-		return True
+def changedMode(CURRENT_SSID):
+	time.sleep(.5)
+	NEW_SSID = getSsid()
+	if NEW_SSID != CURRENT_SSID: 
+		print("changed")
+		logger.info("change detected")
+		if NEW_SSID == 'balena-hotspot':
+			logger.info("hotspot mode")
+			return True
 	else:
 		return False
 
 def dnsMasq():
-	time.sleep(2)
-	os.chdir(WORKING_DIR)
-	dnsmasq = sub.call(['bash', 'dnsmasq.sh'])
-	print dnsmasq
+    time.sleep(2)
+    os.chdir(WORKING_DIR)
+    try:
+        dnsmasq = sub.call(['bash', 'dnsmasq.sh'])
+        logger.info(dnsmasq)
+        return dnsmasq
+    except RuntimeError as e:
+        print(e)
+        logger.error(str(e))
+        return str(e)
 
 def online():
 	os.chdir(WORKING_DIR)
 	connection = sub.check_output(['./nmcli','networking', 'connectivity']).decode(sys.stdout.encoding)
 
 	if connection[0:4] == 'full':
-		print("online")
+		logger.info("online")
 		return True
 	else:
-		print("offline")
-		print(connection)
+		logger.info("offline")
+		logger.info(connection)
 		return False
 
 def bootUp():
-	online()
-	dnsmasq = sub.check_call(['bash', 'dnsmasq.sh'])
-	print dnsmasq
+	if online() == False:
+		logger.info(dnsMasq())
 	
 def main():
 	bootUp()
 	i = 0
-	while i == 0:
-		CURRENT_IP_ADRESS = getIp()
-		if changed(CURRENT_IP_ADRESS) and (online() == False) and CURRENT_IP_ADRESS == '1000.42.0.1':
-			dnsMasq()
-			time.sleep(15)
-			f = open("demofile2.txt", "a")
-			f.write("Now the file has more content!")
-			f.close()
+	try:
+		while i == 0:
+			CURRENT_SSID = getSsid()
+			if changedMode(CURRENT_SSID):
+				time.sleep(1)
+				dnsMasq()
+				time.sleep(10)
+	except RuntimeError as e:
+		logger.info(str(e))
 
 		time.sleep(1)
 			

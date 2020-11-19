@@ -1,4 +1,5 @@
 echo "Starting dnsmasq - $(date)"
+sleep 10
 dnsmasq \
   --address=/#/10.42.0.1 \
   --dhcp-range=10.42.0.1,10.42.0.254 \

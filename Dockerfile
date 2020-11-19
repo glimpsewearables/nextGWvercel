@@ -71,4 +71,6 @@ EXPOSE 80
 #RUN ./nmcli con modify Hotspot wifi-sec.psk "password"
 ### Run a `nmcli` command
 ###
+RUN install_packages nano
+
 CMD ["bash", "start.sh"]
