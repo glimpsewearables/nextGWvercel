@@ -1,6 +1,6 @@
 echo "Starting nextGW - $(date)"
 cd /usr/src/app
-npm run start &
-#bash dnsmasq.sh &
 python dnsmasq.py &
+sleep 1
+npm run start &
 tail -f /dev/null
