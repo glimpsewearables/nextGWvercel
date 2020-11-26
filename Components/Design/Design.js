@@ -123,7 +123,7 @@ export default function FullWidthGrid({ baseURL }) {
             <h1 className={classes.typo}>Home</h1>
           </Grid>
           <Grid className={classes.offline} item xs={12}>
-            {baseURL === "http://192.168.50.5:3000"
+            {baseURL === "http://10.42.0.1"
               ? <Paper className={classes.offlinePaper}><div className={classes.dot} />Offline</Paper>
               : <Paper className={classes.offlinePaper}><div className={classes.dot} style={{ backgroundColor: "#32CD32" }} />Online</Paper>
             }

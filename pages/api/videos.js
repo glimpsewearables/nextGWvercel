@@ -12,7 +12,7 @@ export default async (req, res) => {
 		else{
 		  url = baseURL;
 		}
-		const tunnel_path = `${url}:4005/home/pi/pikrellcam/media/videos`;
+		const tunnel_path = `${url}:4005/pikrellcam/media/videos`;
 		const response = await axios.get(tunnel_path);
 		const videos = response.data.files.map(video => {
 			const info = video.title.split('_');
