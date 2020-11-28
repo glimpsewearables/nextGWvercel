@@ -8,6 +8,7 @@ import WiFiDesktop from "../WiFiDesktop/WiFiDesktop";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
+    backgroundColor: '#fafafa',
     padding: "34px 0",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column-reverse",
@@ -20,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto ",
     fontSize: "20px",
     color: "#7e7e7e",
-    backgroundColor: "#dae3f0",
+    backgroundColor: "#fafafa",
     borderRadius: "8px",
-    //boxShadow: "5px 6px 13px  grey",
+    boxShadow: "12px 12px 16px 0 rgba(0, 0, 0, 0.25), -8px -8px 12px 0 rgba(255, 255, 255, 0.3)",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
@@ -54,9 +55,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto ",
     fontSize: "20px",
     color: "#7e7e7e",
-    backgroundColor: "#dae3f0",
-    borderRadius: "8px",
-    //boxShadow: "5px 6px 13px  grey",
+    backgroundColor: "#fafafa",
+    borderRadius: "30px",
+    boxShadow: "inset 8px 8px 16px 0 #d0d0d0, inset -8px -8px 16px 0 #ffffff;",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",

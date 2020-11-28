@@ -32,7 +32,7 @@ export default function MyApp(props) {
       <CssBaseline />
     <React.Fragment>
       <Head>
-        <title>WiFi App</title>
+        <title>WiFi</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       {baseURL ? <Component {...pageProps} baseURL={baseURL} /> : null}

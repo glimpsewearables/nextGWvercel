@@ -118,6 +118,19 @@ export default function WiFiDesktop({ baseURL }) {
     setData(new_data);
   }
 
+  const knownWifi = async () => {
+    try {
+      const url = `${baseURL}/api/known_wifi`;
+      const response = await axios.get(url);
+      const { ssid_list } = response.data;
+      setData(ssid_list);
+      
+    }
+    catch (error) {
+      console.log(error)
+    }
+  };
+
   const scanWifi = async () => {
     try {
       setScan('Scanning...');

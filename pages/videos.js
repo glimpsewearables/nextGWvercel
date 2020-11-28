@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,7 +16,12 @@ import axios from 'axios';
 import _ from 'underscore';
 import moment from 'moment';
 import Router from "next/router";
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
+import MuiAccordion from '@material-ui/core/Accordion'
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const pulse = keyframes`
   from {
@@ -99,25 +105,13 @@ const useStyles = makeStyles((theme) => ({
   },
   video: {
     width: "100%",
-    height: "75%",
+    height: "100%",
     position: "relative",
-    padding: "20px",
-    backgroundColor: "#dae3f0",
-    borderRadius: "10px",
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "17px",
-    [theme.breakpoints.down("sm")]: {
-      marginTop: "80px",
-      padding: "10px",
-      height: "300px"
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginTop: "80px",
-      padding: "10px",
-      height: "250px"
-    },
+
   },
   dateButton: {
     color: "#7e7e7e",
@@ -191,18 +185,68 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
-  }
+  },
+  
 }));
+
+const Accordion = withStyles({
+  root: {
+
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+    '&$expanded': {
+      margin: 'auto',
+    },
+    width : '100%',
+  },
+  expanded: {},
+})(MuiAccordion);
+
+const AccordionSummary = withStyles({
+  root: {
+
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    marginBottom: -1,
+    minHeight: 56,
+    '&$expanded': {
+      minHeight: 56,
+    },
+  },
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  expanded: {},
+})(MuiAccordionSummary);
+
+const AccordionDetails = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiAccordionDetails);
+
 
 const Videos = ({ baseURL }) => {
   const classes = useStyles();
   const [modal, setModal] = React.useState(false);
   const [url, setUrl] = React.useState(null);
+  const [panel, setPanel] = React.useState(null)
   const [data, setData] = React.useState(null);
   const [dates, setDates] = React.useState(null);
   const [currDate, setCurrDate] = React.useState(null);
   const [currVideos, setCurrVideos] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [expanded, setExpanded] = React.useState(null);
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -247,11 +291,11 @@ const Videos = ({ baseURL }) => {
     const month = months[number_month];
     return `${month} ${date}${nth(date)}, ${split_date[0]}`;
   }
-  
+
   //link passes baseURL in and 
   // THIS IS A FUNCTION, you won't be able to consume it like `link`
-  const link = () => `${baseURL}:4005/home/pi/pikrellcam/media/videos/${currDate}.zip`
-  
+  const link = () => `${baseURL}:3000/home/pi/pikrellcam/media/videos/${currDate}.zip`
+
   React.useEffect(() => {
     async function getVideos() {
       try {
@@ -284,12 +328,12 @@ const Videos = ({ baseURL }) => {
             <Grid className={classes.main} item xs={12} sm={3} md={2}>
               <h1 style={{ color: '#7e7e7e', fontWeight: 'bold', fontFamily: 'Roboto', marginBottom: "0px" }}>Videos</h1>
               <div className={classes.row}>
-              
-              <a href={link()} onClick={handleClick} >
-              <img src="/download.png" width="40" height="40">
-              </img>
-              </a>
-                </div>
+
+                <a href={link()} onClick={handleClick} >
+                  <img src="/download.png" width="40" height="40">
+                  </img>
+                </a>
+              </div>
               <div className={classes.column}>
                 <Paper className={classes.paper}>
                   <List component="nav" className={classes.root}>
@@ -328,6 +372,7 @@ const Videos = ({ baseURL }) => {
                             <ListItemText className={classes.item}>{video.time}</ListItemText>
                           </ListItem>
                         ))
+
                         : <>
                           <ListItem className={classes.listItem}>
                             <div className={classes.greyBar}><PulseBar /></div>
@@ -348,8 +393,8 @@ const Videos = ({ baseURL }) => {
                             <div className={classes.greyBar}><PulseBar /></div>
                           </ListItem>
                         </>
-                      }
-                       
+                    }
+
                   </List>
                 </Paper>
               </div>
@@ -406,11 +451,11 @@ const Videos = ({ baseURL }) => {
             <h1 style={{ color: '#7e7e7e', fontFamily: 'Roboto', marginTop: "20px", marginBottom: '20px' }}>Videos</h1>
           </div>
           <div className={classes.row}>
-              
-              <a href={link()} onClick={handleClick} >
+
+            <a href={link()} onClick={handleClick} >
               <img src="/download.png" width="40" height="40"></img>
-              </a>
-                </div>
+            </a>
+          </div>
           <div className={classes.column}>
             <Paper className={classes.paper}>
               <List component="nav" className={classes.root}>
@@ -447,15 +492,45 @@ const Videos = ({ baseURL }) => {
                     <ListItem
                       key={key}
                       button
-                      divider
+
                       onClick={() => {
-                        setModal(true)
+
                         setUrl(video.url)
                       }}
                       style={{ display: "flex", flexDirection: "column", justifyContent: "left" }}
                     >
-                      <ListItemText className={classes.item}>{video.time}</ListItemText>
+
+                      <Accordion className={classes.accordian}>
+                        <AccordionSummary className={classes.accordian}
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Typography className={classes.heading}>{video.time}</Typography>
+                          
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <div className={classes.video}>
+
+                            {
+                              url ?
+                                <ReactPlayer
+                                  playing={true}
+                                  url={url}
+                                  border= 'black 1px'
+                                  border-radius= '20px'
+                                  width='100%'
+                                  height='100%'
+                                  controls
+                                />
+                                : <div className={classes.videoLoader}><img src="/logo.png" alt="logo" style={{ width: "100px", borderRadius: "50%", boxShadow: "0px 5px 10px #a0a0a0" }} /></div>
+                            }
+
+                          </div>
+                        </AccordionDetails>
+                      </Accordion>
                     </ListItem>
+
                   ))
                   : <>
                     <ListItem className={classes.listItem}>
@@ -472,6 +547,9 @@ const Videos = ({ baseURL }) => {
                     </ListItem>
                   </>
                 }
+
+
+
               </List>
             </Paper>
           </div>
