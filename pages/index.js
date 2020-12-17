@@ -4,7 +4,7 @@ export default function Home({ baseURL }) {
   return (
     <div>
       <Head>
-        <title>WiFi App</title>
+        <title>GlimpseCam</title>
       
       </Head>
       <Design baseURL={baseURL} />

@@ -14,7 +14,7 @@ ENV DBUS_SYSTEM_BUS_ADDRESS unix:path=/host/run/dbus/system_bus_socket
 ### Install `nmcli` dependencies
 ###
 RUN apt-get update \
-    && apt-get install -y libnm0 libpolkit-agent-1-0
+    && apt-get install -y libnm0 libpolkit-agent-1-0 git
 
 ### `nmcli` will be available in the `/usr/src/app` folder
 ###
@@ -41,11 +41,11 @@ RUN apt-get clean \
 
 
 ### Copy NextGW and install
-COPY . /usr/src/app
+RUN git clone https://github.com/glimpsewearables/nextGW.git
+RUN mv nextGW/* /usr/src/app
 
-
-RUN npm install \
-    && npm run build
+RUN npm install 
+RUN sudo npm run build
 
 
 ### Copy the start script executing `nmcli`
