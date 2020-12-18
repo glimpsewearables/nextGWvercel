@@ -10,7 +10,7 @@ export default async (req, res) => {
 		  url = 'http://10.42.0.1';
 		}
 		else{
-		  url = 'baseURL';
+		  url = baseURL;
 		}
 		const tunnel_path = `${url}:4005/pikrellcam/media/videos/`;
 		const response = await axios.get(tunnel_path);
