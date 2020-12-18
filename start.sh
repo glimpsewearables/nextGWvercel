@@ -1,10 +1,15 @@
 echo "Starting nextGW - $(date)"
 cd /usr/src/app
-python dnsmasq.py &
-sleep 1
 npm run start &
 
-echo "America/Los_Angeles" > /etc/timezone
-dpkg-reconfigure tzdata
+sleep 1
+
+python dnsmasq.py &
+
+
+cd /etc
+rm localtime
+ln -s /usr/share/zoneinfo/US/Pacific localtime
+
 
 tail -f /dev/null
