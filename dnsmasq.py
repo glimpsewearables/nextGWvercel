@@ -11,7 +11,7 @@ WORKING_DIR = "/usr/src/app"
 
 def getSsid():
         SSID = sub.check_output(['./nmcli'], shell=True)
-        print(SSID[20:34])
+        #print(SSID[20:34])
         logger.info(SSID[20:34])
         return SSID[20:34]
 
