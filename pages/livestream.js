@@ -151,7 +151,7 @@ export default function Livestream({ baseURL }) {
           <div className={classes.video}>
             {
               !loading
-                ? <img src={`${baseURL}5/run/pikrellcam/mjpeg.jpg?${time}`} style={{ width: "100%", height: "100%" }} onLoad={() => setLoading(false)} />
+                ? <img src={`${baseURL}:3000/mjpeg_read.php?time=${time}`} style={{ width: "100%", height: "100%" }} onLoad={() => setLoading(false)} />
                 : <div className={classes.videoLoader}><img src="/logo.png" alt="logo" style={{ width: "100px", borderRadius: "50%", boxShadow: "0px 5px 10px #a0a0a0", }} /></div>
 
             }
