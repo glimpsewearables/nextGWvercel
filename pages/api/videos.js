@@ -12,7 +12,7 @@ export default async (req, res) => {
 		else{
 		  ip = 'http://603b5f115b53.ngrok.io/';
 		}
-		const tunnel_path = `${ip}pikrellcam/media/videos/`;
+		const tunnel_path = `${ip}files/pikrellcam/media/videos/`;
 		const response = await axios.get(tunnel_path);
 		const videos = response.data.files.map(video => {
 			const info = video.title.split('_');
@@ -20,7 +20,7 @@ export default async (req, res) => {
 			const name = `${info[0]}_${info[1]}`;
 			const date = info[2];
 			const time = formatTime(info[3] ? info[3].substring(0, info[3].length - 4) : null);
-			const url = `${ip}media/videos/${video.title}`;
+			const url = `${ip}pikrellcam/media/videos/${video.title}`;
 			return moment(date, "YYYY-MM-DD", true).isValid()
 				? {
 					filename,

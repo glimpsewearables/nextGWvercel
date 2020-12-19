@@ -11,7 +11,7 @@ export default async (req, res) => {
 		else{
 		  url = 'http://603b5f115b53.ngrok.io/';
 		}
-		const tunnel_path = `${url}glimpse-cam/glimpseLog.log`;
+		const tunnel_path = `${url}files/glimpse-cam/glimpseLog.log`;
 		const response = await axios.get(tunnel_path);
 		const log = response.data.split('\n').reverse();
 		const log_v1 = log.map(string => {
