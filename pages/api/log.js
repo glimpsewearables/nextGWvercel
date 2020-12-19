@@ -9,9 +9,9 @@ export default async (req, res) => {
 		  url = 'http://10.42.0.1';
 		}
 		else{
-		  url = baseURL;
+		  url = 'http://603b5f115b53.ngrok.io/';
 		}
-		const tunnel_path = `${url}:4005/glimpse-cam/glimpseLog.log`;
+		const tunnel_path = `${url}glimpse-cam/glimpseLog.log`;
 		const response = await axios.get(tunnel_path);
 		const log = response.data.split('\n').reverse();
 		const log_v1 = log.map(string => {
